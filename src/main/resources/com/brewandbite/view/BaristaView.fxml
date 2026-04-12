@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.brewandbite.controller.BaristaController"
+            styleClass="root-pane">
+
+    <top>
+        <HBox styleClass="top-bar" alignment="CENTER_LEFT" spacing="16">
+            <padding><Insets top="12" right="20" bottom="12" left="20"/></padding>
+            <Label text="Brew &amp; Bite — Barista Dashboard" styleClass="top-bar-title"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <ComboBox fx:id="filterCombo" promptText="Filter status" prefWidth="150"/>
+            <Button text="Logout" styleClass="btn-logout" onAction="#handleLogout"/>
+        </HBox>
+    </top>
+
+    <center>
+        <SplitPane dividerPositions="0.62" styleClass="main-split">
+            <!-- Left: orders table -->
+            <VBox spacing="10">
+                <padding><Insets top="16" right="12" bottom="16" left="16"/></padding>
+                <Label text="Incoming Orders" styleClass="section-title"/>
+                <TableView fx:id="ordersTable" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="colOrderId"  text="Order ID"  prefWidth="140"/>
+                        <TableColumn fx:id="colCustomer" text="Customer"  prefWidth="120"/>
+                        <TableColumn fx:id="colStatus"   text="Status"    prefWidth="110"/>
+                        <TableColumn fx:id="colTime"     text="Time"      prefWidth="150"/>
+                        <TableColumn fx:id="colTotal"    text="Total (USD)" prefWidth="110"/>
+                    </columns>
+                </TableView>
+                <HBox spacing="10">
+                    <Button text="▶ Mark In Progress" styleClass="btn-secondary"
+                            onAction="#handleMarkInProgress"/>
+                    <Button text="✔ Mark Fulfilled"   styleClass="btn-primary"
+                            onAction="#handleMarkFulfilled"/>
+                </HBox>
+                <Label fx:id="statusLabel" styleClass="status-info" wrapText="true"/>
+            </VBox>
+
+            <!-- Right: order detail -->
+            <VBox spacing="10">
+                <padding><Insets top="16" right="16" bottom="16" left="12"/></padding>
+                <Label text="Order Detail" styleClass="section-title"/>
+                <Label fx:id="selectedOrderLabel" text="No order selected" styleClass="detail-label"/>
+                <ListView fx:id="itemsListView" VBox.vgrow="ALWAYS"/>
+            </VBox>
+        </SplitPane>
+    </center>
+</BorderPane>

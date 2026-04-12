@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.brewandbite.controller.CustomerController"
+            styleClass="root-pane">
+
+    <!-- TOP BAR -->
+    <top>
+        <HBox styleClass="top-bar" alignment="CENTER_LEFT" spacing="16">
+            <padding><Insets top="12" right="20" bottom="12" left="20"/></padding>
+            <Label text="Brew &amp; Bite" styleClass="top-bar-title"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label fx:id="welcomeLabel" styleClass="top-bar-user"/>
+            <Button text="Logout" styleClass="btn-logout" onAction="#handleLogout"/>
+        </HBox>
+    </top>
+
+    <!-- CENTER: Menu catalog -->
+    <center>
+        <TabPane fx:id="catalogTabs" tabClosingPolicy="UNAVAILABLE" styleClass="catalog-tabs">
+            <Tab fx:id="beveragesTab" text="Beverages">
+                <ScrollPane fitToWidth="true" styleClass="scroll-pane">
+                    <VBox fx:id="beverageList" spacing="12" styleClass="menu-list">
+                        <padding><Insets top="16" right="16" bottom="16" left="16"/></padding>
+                    </VBox>
+                </ScrollPane>
+            </Tab>
+            <Tab fx:id="pastriesTab" text="Pastries">
+                <ScrollPane fitToWidth="true" styleClass="scroll-pane">
+                    <VBox fx:id="pastryList" spacing="12" styleClass="menu-list">
+                        <padding><Insets top="16" right="16" bottom="16" left="16"/></padding>
+                    </VBox>
+                </ScrollPane>
+            </Tab>
+        </TabPane>
+    </center>
+
+    <!-- RIGHT: Order summary -->
+    <right>
+        <VBox styleClass="order-panel" spacing="12" prefWidth="300" minWidth="260">
+            <padding><Insets top="16" right="16" bottom="16" left="16"/></padding>
+            <Label text="Your Order" styleClass="section-title"/>
+            <ListView fx:id="orderListView" VBox.vgrow="ALWAYS" styleClass="order-list"/>
+            <Label fx:id="totalLabel" text="Total: USD 0.00" styleClass="total-label"/>
+            <Label fx:id="statusLabel" styleClass="status-info" wrapText="true"/>
+            <HBox spacing="10">
+                <Button text="Place Order" styleClass="btn-primary"
+                        onAction="#handlePlaceOrder" maxWidth="Infinity" HBox.hgrow="ALWAYS"/>
+                <Button text="Clear" styleClass="btn-danger"
+                        onAction="#handleClearOrder"/>
+            </HBox>
+        </VBox>
+    </right>
+</BorderPane>

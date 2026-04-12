@@ -1,0 +1,3 @@
+Note: This project does NOT use module-info.java intentionally.
+The maven-shade-plugin creates a fat JAR from classpath dependencies.
+JavaFX is included as regular (non-modular) classpath JARs via Maven.

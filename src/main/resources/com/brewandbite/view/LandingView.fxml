@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.brewandbite.controller.LandingController"
+      alignment="CENTER" spacing="30" styleClass="root-pane">
+    <padding><Insets top="80" right="60" bottom="80" left="60"/></padding>
+
+    <Label text="Brew &amp; Bite" styleClass="app-title"/>
+    <Label text="Your Favourite Neighbourhood Café" styleClass="app-subtitle"/>
+
+    <VBox spacing="16" alignment="CENTER" maxWidth="320">
+        <Button fx:id="customerBtn" text="I'm a Customer"
+                maxWidth="Infinity" prefHeight="52"
+                styleClass="btn-hero" onAction="#handleCustomer"/>
+        <Button fx:id="staffBtn" text="Staff Login"
+                maxWidth="Infinity" prefHeight="52"
+                styleClass="btn-secondary" onAction="#handleStaffLogin"/>
+    </VBox>
+</VBox>
