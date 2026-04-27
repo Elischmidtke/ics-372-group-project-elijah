@@ -1,5 +1,9 @@
 package com.brewandbite.service;
+import com.brewandbite.notification.OrderEvent;
+import com.brewandbite.notification.OrderEventType;
+import com.brewandbite.notification.OrderObserver;
 
+import java.util.concurrent.CopyOnWriteArrayList;
 import com.brewandbite.model.AppData;
 import com.brewandbite.model.MenuItem;
 import com.brewandbite.model.Order;
@@ -20,6 +24,7 @@ public class OrderService {
     private final InventoryService      inventoryService;
     private final PersistenceService    persistenceService;
     private final MenuService           menuService;
+    private final List<OrderObserver> observers = new CopyOnWriteArrayList<>();
 
     public OrderService(List<Order>         orders,
                         InventoryService     inventoryService,
@@ -70,6 +75,19 @@ public class OrderService {
         order.setStatus(Order.Status.PENDING);
         orders.add(order);
         saveAll();
+     // Barista notification: new order
+        notifyObservers(new OrderEvent(
+                OrderEventType.NEW_ORDER,
+                order,
+                "New order placed: " + order.getOrderId()
+        ));
+
+        // Customer notification: treat PENDING as "ACCEPTED" (since no ACCEPTED status exists)
+        notifyObservers(new OrderEvent(
+                OrderEventType.ACCEPTED,
+                order,
+                "Your order was accepted! ID: " + order.getOrderId()
+        ));
         return null; // null = success
     }
 
@@ -84,6 +102,35 @@ public class OrderService {
             orders.set(idx, order);
         }
         saveAll();
+     // Customer-facing status notifications
+        switch (newStatus) {
+            case IN_PROGRESS -> notifyObservers(new OrderEvent(
+                    OrderEventType.IN_PROGRESS,
+                    order,
+                    "Your order " + order.getOrderId() + " is now IN PROGRESS."
+            ));
+            case FULFILLED -> notifyObservers(new OrderEvent(
+                    OrderEventType.COMPLETE,
+                    order,
+                    "Your order " + order.getOrderId() + " is COMPLETE!"
+            ));
+            default -> { /* no-op */ }
+        }
+
+        // Barista-facing notifications
+        switch (newStatus) {
+            case PENDING -> notifyObservers(new OrderEvent(
+                    OrderEventType.PENDING_ORDER,
+                    order,
+                    "Order pending: " + order.getOrderId()
+            ));
+            case FULFILLED -> notifyObservers(new OrderEvent(
+                    OrderEventType.COMPLETED_ORDER,
+                    order,
+                    "Order completed: " + order.getOrderId()
+            ));
+            default -> { /* no-op */ }
+        }
     }
 
     // Helpers
@@ -100,5 +147,19 @@ public class OrderService {
         data.setIngredients(inventoryService.getInventoryAsList());
         data.setOrders(new ArrayList<>(orders));
         persistenceService.saveData(data);
+    }
+    
+    public void addObserver(OrderObserver obs) {
+        if (obs != null) observers.add(obs);
+    }
+
+    public void removeObserver(OrderObserver obs) {
+        observers.remove(obs);
+    }
+
+    private void notifyObservers(OrderEvent event) {
+        for (OrderObserver o : observers) {
+            o.onOrderEvent(event);
+        }
     }
 }

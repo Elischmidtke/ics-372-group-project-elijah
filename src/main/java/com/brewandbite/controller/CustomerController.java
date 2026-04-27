@@ -14,8 +14,11 @@ import javafx.scene.layout.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import com.brewandbite.notification.OrderEvent;
+import com.brewandbite.notification.OrderObserver;
+import javafx.application.Platform;
 
-public class CustomerController {
+public class CustomerController implements OrderObserver {
 
     // FXML nodes
     @FXML private Label          welcomeLabel;
@@ -38,6 +41,7 @@ public class CustomerController {
         SessionStore s = SessionStore.getInstance();
         menuService      = s.getMenuService();
         orderService     = s.getOrderService();
+        orderService.addObserver(this);
         inventoryService = s.getInventoryService();
 
         welcomeLabel.setText("Welcome, " + s.getCurrentUserName() + "!");
@@ -212,6 +216,7 @@ public class CustomerController {
 
     @FXML
     private void handleLogout() {
+    	orderService.removeObserver(this);
         SceneManager.switchTo("/com/brewandbite/view/LandingView.fxml", "Brew & Bite");
     }
 
@@ -219,5 +224,18 @@ public class CustomerController {
 
     private void setStatus(String msg) {
         statusLabel.setText(msg);
+    }
+    
+    @Override
+    public void onOrderEvent(OrderEvent event) {
+        // Only notify the logged-in customer about their own orders
+        String me = SessionStore.getInstance().getCurrentUserName();
+        if (event.getOrder() == null) return;
+        if (!me.equals(event.getOrder().getCustomerName())) return;
+
+        Platform.runLater(() -> {
+            // Reuse your existing status label
+            statusLabel.setText(event.getMessage());
+        });
     }
 }

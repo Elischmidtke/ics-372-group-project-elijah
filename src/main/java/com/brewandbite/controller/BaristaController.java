@@ -1,6 +1,9 @@
 package com.brewandbite.controller;
 
 import com.brewandbite.model.Order;
+import com.brewandbite.notification.OrderEvent;
+import com.brewandbite.notification.OrderObserver;
+import javafx.application.Platform;
 import com.brewandbite.model.OrderItem;
 import com.brewandbite.service.OrderService;
 import com.brewandbite.util.SceneManager;
@@ -11,7 +14,7 @@ import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
-public class BaristaController {
+public class BaristaController implements OrderObserver {
 
     // FXML nodes
     @FXML private TableView<Order>              ordersTable;
@@ -34,7 +37,7 @@ public class BaristaController {
     @FXML
     public void initialize() {
         orderService = SessionStore.getInstance().getOrderService();
-
+        orderService.addObserver(this);
         setupTable();
         setupFilter();
         setupSelectionListener();
@@ -123,10 +126,18 @@ public class BaristaController {
 
     @FXML
     private void handleLogout() {
+    	orderService.removeObserver(this);
         SceneManager.switchTo("/com/brewandbite/view/LandingView.fxml", "Brew & Bite");
     }
 
     // Helpers
 
     private void setStatus(String msg) { statusLabel.setText(msg); }
+    
+    @Override
+    public void onOrderEvent(OrderEvent event) {
+        Platform.runLater(() -> {
+            statusLabel.setText(event.getMessage());
+        });
+    }
 }
