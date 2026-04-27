@@ -1,6 +1,6 @@
-package com.brewandbite.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+
+//import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -13,19 +13,19 @@ public class Order {
     private static final DateTimeFormatter FMT =
             DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
-    @JsonProperty("orderId")
+    //@JsonProperty("orderId")
     private String orderId;
 
-    @JsonProperty("customerName")
+   //@JsonProperty("customerName")
     private String customerName;
 
-    @JsonProperty("items")
+    //@JsonProperty("items")
     private List<OrderItem> items = new ArrayList<>();
 
-    @JsonProperty("status")
+    //@JsonProperty("status")
     private Status status = Status.PENDING;
 
-    @JsonProperty("timestamp")
+    //@JsonProperty("timestamp")
     private String timestamp;
 
     public Order() {}

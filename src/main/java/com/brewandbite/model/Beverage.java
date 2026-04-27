@@ -1,5 +1,3 @@
-package com.brewandbite.model;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -19,8 +17,8 @@ public class Beverage extends MenuItem {
 
     public Beverage() {}
 
-    public Beverage(String id, String name, String beverageType, double basePrice) {
-        super(id, name, "Beverage", basePrice);
+    public Beverage(String name, String beverageType, double basePrice) {
+        super(name, "Beverage", basePrice);
         this.beverageType = beverageType;
     }
 
