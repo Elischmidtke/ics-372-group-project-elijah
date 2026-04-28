@@ -1,6 +1,6 @@
 
 
-//import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,22 +11,22 @@ import java.util.List;
  */
 public class OrderItem {
 
-    //@JsonProperty("menuItemId")
+    @JsonProperty("menuItemId")
     private String menuItemId;
 
-    //@JsonProperty("menuItemName")
+    @JsonProperty("menuItemName")
     private String menuItemName;
 
-    //@JsonProperty("quantity")
+    @JsonProperty("quantity")
     private int quantity;
 
-    //@JsonProperty("selectedSize")
+    @JsonProperty("selectedSize")
     private String selectedSize;
 
-    //@JsonProperty("selectedCustomizations")
+    @JsonProperty("selectedCustomizations")
     private List<String> selectedCustomizations = new ArrayList<>();
 
-    //@JsonProperty("unitPrice")
+    @JsonProperty("unitPrice")
     private double unitPrice;
 
     public OrderItem() {}
