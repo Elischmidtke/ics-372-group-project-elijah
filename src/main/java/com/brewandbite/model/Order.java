@@ -1,4 +1,4 @@
-package com.brewandbite.model;
+
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.LocalDateTime;
@@ -16,7 +16,7 @@ public class Order {
     @JsonProperty("orderId")
     private String orderId;
 
-    @JsonProperty("customerName")
+   @JsonProperty("customerName")
     private String customerName;
 
     @JsonProperty("items")

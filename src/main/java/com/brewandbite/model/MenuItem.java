@@ -1,16 +1,19 @@
-package com.brewandbite.model;
 
 import com.fasterxml.jackson.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
+import com.google.gson.*;
+
+
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "type")
 @JsonSubTypes({
     @JsonSubTypes.Type(value = Beverage.class, name = "beverage"),
-    @JsonSubTypes.Type(value = Pastry.class,   name = "pastry")
+   @JsonSubTypes.Type(value = Pastry.class,   name = "pastry")
 })
 public abstract class MenuItem {
-
+	@JsonProperty("idGen")
+	private static int idGen = 0;
     @JsonProperty("id")
     private String id;
 
@@ -26,16 +29,18 @@ public abstract class MenuItem {
     @JsonProperty("available")
     private boolean available = true;
 
-    @JsonProperty("ingredientRequirements")
+   @JsonProperty("ingredientRequirements")
     private List<IngredientRequirement> ingredientRequirements = new ArrayList<>();
 
-    public MenuItem() {}
+    public MenuItem() {
+    	this.id = "MI" + idGen++;
+    }
 
-    public MenuItem(String id, String name, String category, double basePrice) {
-        this.id = id;
+    public MenuItem(String name, String category, double basePrice) {
+    	this.id = "MI" + idGen++;
         this.name = name;
         this.category = category;
-        this.basePrice = basePrice;
+       this.basePrice = basePrice;
     }
 
     public String getId() { return id; }
@@ -52,6 +57,15 @@ public abstract class MenuItem {
 
     public boolean isAvailable() { return available; }
     public void setAvailable(boolean v) { this.available = v; }
+    
+    //addition for decorator
+    public double getTotal() {
+    	return basePrice;
+    }
+    
+    public String getDescription() {
+    	return name;
+    }
 
     public List<IngredientRequirement> getIngredientRequirements() { return ingredientRequirements; }
     public void setIngredientRequirements(List<IngredientRequirement> v) { this.ingredientRequirements = v; }

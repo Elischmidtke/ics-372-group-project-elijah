@@ -1,4 +1,4 @@
-package com.brewandbite.model;
+
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.ArrayList;
