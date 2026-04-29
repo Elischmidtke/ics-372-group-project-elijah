@@ -1,13 +1,13 @@
-
+package com.brewandbite.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Ingredient {
 
-   @JsonProperty("name")
+    @JsonProperty("name")
     private String name;
 
-   @JsonProperty("quantity")
+    @JsonProperty("quantity")
     private double quantity;
 
     @JsonProperty("unit")

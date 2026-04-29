@@ -1,7 +1,7 @@
-
+package com.brewandbite.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-//not needed 
+
 public class Customization {
 
     @JsonProperty("name")
