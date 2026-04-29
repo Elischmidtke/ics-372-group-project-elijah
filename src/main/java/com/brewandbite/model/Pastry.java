@@ -1,4 +1,4 @@
-
+package com.brewandbite.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -12,8 +12,8 @@ public class Pastry extends MenuItem {
 
     public Pastry() {}
 
-    public Pastry(String name, String pastryType, String variation, double basePrice) {
-        super(name, "Pastry", basePrice);
+    public Pastry(String id, String name, String pastryType, String variation, double basePrice) {
+        super(id, name, "Pastry", basePrice);
         this.pastryType = pastryType;
         this.variation  = variation;
     }
