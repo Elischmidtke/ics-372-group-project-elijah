@@ -19,14 +19,31 @@ public class Pastry extends MenuItem {
     }
 
     public String getPastryType() { return pastryType; }
-    public void setPastryType(String v){ this.pastryType = v; }
+    public void setPastryType(String v){
+    	if(!(v.isBlank()) && !(v == null)) {
+    		this.pastryType = v; 
+    	}
+    }
 
     public String getVariation() { return variation; }
-    public void setVariation(String v) { this.variation = v; }
+    public void setVariation(String v) { 
+    	if(!(v.isBlank()) && !(v == null)) {
+    		this.variation = v; 
+    	}
+    }
 
     @Override
     public String getDisplayType() { return pastryType != null ? pastryType : "Pastry"; }
 
     @Override
     public String toString() { return getName(); }
+    
+    @Override
+    public void editItem(MenuItemRequest req) {
+    	super.editItem(req);
+    	
+    	//edit pastry specific items
+    	this.setPastryType(req.getSubType());
+    	this.setVariation(req.getVariation());
+    }
 }

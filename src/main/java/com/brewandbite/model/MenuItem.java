@@ -42,20 +42,61 @@ public abstract class MenuItem {
     public void setId(String v) { this.id = v; }
 
     public String getName() { return name; }
-    public void setName(String v) { this.name = v; }
+    public void setName(String v) { 
+    	if(!(v.isBlank()) && !(v == null)) {
+    		this.name = v; 
+    	}
+    }
 
     public String getCategory() { return category; }
-    public void setCategory(String v) { this.category = v; }
+    public void setCategory(String v) { 
+    	if(!(v.isBlank()) && !(v == null)) {
+    		this.category = v; 
+    	}
+    	
+    }
 
     public double  getBasePrice() { return basePrice; }
-    public void setBasePrice(double v) { this.basePrice = v; }
+    public void setBasePrice(double v) { 
+    	if(v >= 0.0) {
+    		this.basePrice = v; 
+    	}
+    }
 
     public boolean isAvailable() { return available; }
     public void setAvailable(boolean v) { this.available = v; }
 
     public List<IngredientRequirement> getIngredientRequirements() { return ingredientRequirements; }
     public void setIngredientRequirements(List<IngredientRequirement> v) { this.ingredientRequirements = v; }
+    
+    
+    //change ingredient requirement
+    public void editRequirement(String name, double cost) {
+    	//get the ingredient requirement
+    	//check if the ingredient requirement exists and if so change its amount
+    	for(IngredientRequirement temp: ingredientRequirements) {
+    		if(temp.getIngredientName().equals(name)) {
+    			temp.setAmount(cost);
+    			return;
+    		}
+    	}
+    }
 
     /** Short label used in UI cards and type columns. */
     public abstract String getDisplayType();
+    
+    public void editItem(MenuItemRequest req) {
+    	this.setName(req.getName());
+    	this.setBasePrice(req.getBasePrice());
+    	this.setCategory(req.getCategory());
+    	
+    	List<IngredientRequirement> tempRequire = req.getIngredientRequirement();
+    	
+    	//for each of the changed ingredient requirements change them
+    	for(IngredientRequirement requirement: tempRequire) {
+    		editRequirement(requirement.getIngredientName(), requirement.getAmount());
+    	}
+    	
+    }
+    
 }

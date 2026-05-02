@@ -41,10 +41,73 @@ public class Beverage extends MenuItem {
         if (size == null || sizePrices == null) return getBasePrice();
         return sizePrices.getOrDefault(size, getBasePrice());
     }
+    
+    //change customizations
+    public void editCustomizationPrice(String name, double cost) {
+    	for(Customization customization: availableCustomizations){
+    		if(customization.getName().equals(name) && customization.getExtraCost() >= 0.0) {
+        		customization.setExtraCost(cost);
+        	}
+    	}
+    	
+    }
+    
+    //add customization
+    public void addCustomization(Customization customization) {
+    	for(Customization temp: availableCustomizations){ //check if it exists already
+    		if(temp.getName().equals(customization.getName())) {
+        		return;
+        	}
+    	}
+    	
+    	//check if the customization extra cost is a negative value
+    	if(customization.getExtraCost() >= 0.0) { //if not negative add
+    		availableCustomizations.add(customization);
+    	}
+    }
+    //change the price of a size
+    public void setSizePrice(String size, double price) {
+    	if(size != null && sizePrices.containsKey(size) && price >= 0.0) { //price can't be negative
+    		sizePrices.replace(size, price);
+    	}
+    }
+    
+    //remove customization
+    public void removeCustomization(String name) {
+    	for(Customization temp: availableCustomizations){ //check if it exists 
+    		if(temp.getName().equals(name)) {
+        		availableCustomizations.remove(temp);
+        		break;
+        	}
+    	}
+    }
+    
 
     @Override
     public String getDisplayType() { return beverageType != null ? beverageType : "Beverage"; }
 
     @Override
     public String toString() { return getName(); }
+    
+    public void editItem(MenuItemRequest req) {
+    	//do base item changes
+    	super.editItem(req);
+    	
+    	//do beverage item changes
+    	this.setBeverageType(req.getSubType());
+    	Map<String, Double> newSizesPrices = req.getSizePrices();
+    	
+    	//update beverage sizes
+    	for (Map.Entry<String, Double> entry : newSizesPrices.entrySet()) {
+            this.setSizePrice(entry.getKey(), entry.getValue());
+        }
+    	
+    	//edit customizations
+    	List<Customization> customizations = req.getAvailableCustomizations();
+    	
+    	for(Customization customization: customizations) {
+    		this.editCustomizationPrice(customization.getName(), customization.getExtraCost());
+    	}
+    	
+    }
 }
