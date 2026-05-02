@@ -18,7 +18,14 @@
       ],
       "ingredientRequirements": [
         { "ingredientName": "Coffee Beans", "amount": 18.0 },
-        { "ingredientName": "Milk",         "amount": 20.0 }
+        { "ingredientName": "Milk",         "amount": 20.0 },
+        { "ingredientName": "Sugar",           "amount": 0.0 },
+      	{ "ingredientName": "Flour",           "amount": 0.0 },
+     	{ "ingredientName": "Butter",          "amount": 0.0 },
+      	{ "ingredientName": "Chocolate Chips", "amount": 0.0 },
+      	{ "ingredientName": "Green Tea Leaves","amount": 0.0  },
+      	{ "ingredientName": "Black Tea Leaves","amount": 0.0 },
+      	{ "ingredientName": "Herbal Tea Blend","amount": 0.0  }
       ]
     },
     {
@@ -37,7 +44,14 @@
       ],
       "ingredientRequirements": [
         { "ingredientName": "Coffee Beans", "amount": 18.0 },
-        { "ingredientName": "Milk",         "amount": 12.0 }
+        { "ingredientName": "Milk",         "amount": 12.0 },
+        { "ingredientName": "Sugar",           "amount": 0.0 },
+      	{ "ingredientName": "Flour",           "amount": 0.0 },
+     	{ "ingredientName": "Butter",          "amount": 0.0 },
+      	{ "ingredientName": "Chocolate Chips", "amount": 0.0 },
+      	{ "ingredientName": "Green Tea Leaves","amount": 0.0  },
+      	{ "ingredientName": "Black Tea Leaves","amount": 0.0 },
+      	{ "ingredientName": "Herbal Tea Blend","amount": 0.0  }
       ]
     },
     {
@@ -53,7 +67,15 @@
         { "name": "Extra Shot", "extraCost": 2.0 }
       ],
       "ingredientRequirements": [
-        { "ingredientName": "Coffee Beans", "amount": 14.0 }
+        { "ingredientName": "Coffee Beans", "amount": 14.0 },
+        { "ingredientName": "Milk",         "amount": 0.0 },
+        { "ingredientName": "Sugar",           "amount": 0.0 },
+      	{ "ingredientName": "Flour",           "amount": 0.0 },
+     	{ "ingredientName": "Butter",          "amount": 0.0 },
+      	{ "ingredientName": "Chocolate Chips", "amount": 0.0 },
+      	{ "ingredientName": "Green Tea Leaves","amount": 0.0  },
+      	{ "ingredientName": "Black Tea Leaves","amount": 0.0 },
+      	{ "ingredientName": "Herbal Tea Blend","amount": 0.0  }
       ]
     },
     {
@@ -71,8 +93,15 @@
         { "name": "Sugar-free Syrup","extraCost": 2.0 }
       ],
       "ingredientRequirements": [
-        { "ingredientName": "Green Tea Leaves", "amount": 5.0 },
-        { "ingredientName": "Sugar",            "amount": 10.0 }
+        { "ingredientName": "Coffee Beans", "amount": 0.0 },
+        { "ingredientName": "Milk",         "amount": 0.0 },
+        { "ingredientName": "Sugar",            "amount": 10.0 },
+      	{ "ingredientName": "Flour",           "amount": 0.0 },
+     	{ "ingredientName": "Butter",          "amount": 0.0 },
+      	{ "ingredientName": "Chocolate Chips", "amount": 0.0 },
+      	{ "ingredientName": "Green Tea Leaves", "amount": 5.0 },
+      	{ "ingredientName": "Black Tea Leaves","amount": 0.0 },
+      	{ "ingredientName": "Herbal Tea Blend","amount": 0.0  }
       ]
     },
     {
@@ -89,8 +118,15 @@
         { "name": "Honey", "extraCost": 3.0 }
       ],
       "ingredientRequirements": [
-        { "ingredientName": "Black Tea Leaves", "amount": 5.0 },
-        { "ingredientName": "Sugar",            "amount": 10.0 }
+        { "ingredientName": "Coffee Beans", "amount": 0.0 },
+        { "ingredientName": "Milk",         "amount": 0.0 },
+        { "ingredientName": "Sugar",            "amount": 10.0 },
+      	{ "ingredientName": "Flour",           "amount": 0.0 },
+     	{ "ingredientName": "Butter",          "amount": 0.0 },
+      	{ "ingredientName": "Chocolate Chips", "amount": 0.0 },
+      	{ "ingredientName": "Green Tea Leaves", "amount": 0.0 },
+      	{ "ingredientName": "Black Tea Leaves", "amount": 5.0 },
+      	{ "ingredientName": "Herbal Tea Blend","amount": 0.0  }
       ]
     },
     {
@@ -106,8 +142,15 @@
         { "name": "Honey", "extraCost": 3.0 }
       ],
       "ingredientRequirements": [
-        { "ingredientName": "Herbal Tea Blend", "amount": 5.0 },
-        { "ingredientName": "Sugar",            "amount": 5.0 }
+        { "ingredientName": "Coffee Beans", "amount": 0.0 },
+        { "ingredientName": "Milk",         "amount": 0.0 },
+        { "ingredientName": "Sugar",            "amount": 5.0 },
+      	{ "ingredientName": "Flour",           "amount": 0.0 },
+     	{ "ingredientName": "Butter",          "amount": 0.0 },
+      	{ "ingredientName": "Chocolate Chips", "amount": 0.0 },
+      	{ "ingredientName": "Green Tea Leaves", "amount": 0.0 },
+      	{ "ingredientName": "Black Tea Leaves", "amount": 0.0 },
+      	{ "ingredientName": "Herbal Tea Blend", "amount": 5.0 }
       ]
     },
     {
@@ -120,9 +163,15 @@
       "pastryType": "Croissant",
       "variation": "Butter",
       "ingredientRequirements": [
-        { "ingredientName": "Flour",  "amount": 80.0  },
-        { "ingredientName": "Butter", "amount": 40.0  },
-        { "ingredientName": "Sugar",  "amount": 10.0  }
+        { "ingredientName": "Coffee Beans", "amount": 0.0 },
+        { "ingredientName": "Milk", "amount": 0.0 },
+        { "ingredientName": "Sugar",  "amount": 10.0  },
+      	{ "ingredientName": "Flour",  "amount": 80.0  },
+     	{ "ingredientName": "Butter", "amount": 40.0  },
+      	{ "ingredientName": "Chocolate Chips", "amount": 0.0 },
+      	{ "ingredientName": "Green Tea Leaves", "amount": 0.0 },
+      	{ "ingredientName": "Black Tea Leaves", "amount": 0.0 },
+      	{ "ingredientName": "Herbal Tea Blend", "amount": 0.0 }
       ]
     },
     {
@@ -135,9 +184,15 @@
       "pastryType": "Croissant",
       "variation": "Chocolate",
       "ingredientRequirements": [
-        { "ingredientName": "Flour",           "amount": 8.0  },
-        { "ingredientName": "Butter",          "amount": 4.0  },
-        { "ingredientName": "Chocolate Chips", "amount": 3.0  }
+        { "ingredientName": "Coffee Beans", "amount": 0.0 },
+        { "ingredientName": "Milk",         "amount": 0.0 },
+        { "ingredientName": "Sugar",            "amount": 0.0 },
+      	{ "ingredientName": "Flour",           "amount": 8.0  },
+     	{ "ingredientName": "Butter",          "amount": 4.0  },
+      	{ "ingredientName": "Chocolate Chips", "amount": 3.0  },
+      	{ "ingredientName": "Green Tea Leaves", "amount": 0.0 },
+      	{ "ingredientName": "Black Tea Leaves", "amount": 0.0 },
+      	{ "ingredientName": "Herbal Tea Blend", "amount": 0.0 }
       ]
     },
     {
@@ -150,10 +205,15 @@
       "pastryType": "Muffin",
       "variation": "Blueberry",
       "ingredientRequirements": [
-        { "ingredientName": "Flour",  "amount": 7.0  },
+        { "ingredientName": "Coffee Beans", "amount": 0.0 },
+        { "ingredientName": "Milk",   "amount": 6.0  },
         { "ingredientName": "Sugar",  "amount": 3.0  },
-        { "ingredientName": "Butter", "amount": 2.0  },
-        { "ingredientName": "Milk",   "amount": 6.0  }
+      	{ "ingredientName": "Flour",  "amount": 7.0  },
+     	{ "ingredientName": "Butter", "amount": 2.0  },
+      	{ "ingredientName": "Chocolate Chips", "amount": 0.0  },
+      	{ "ingredientName": "Green Tea Leaves", "amount": 0.0 },
+      	{ "ingredientName": "Black Tea Leaves", "amount": 0.0 },
+      	{ "ingredientName": "Herbal Tea Blend", "amount": 0.0 }
       ]
     },
     {
@@ -166,11 +226,15 @@
       "pastryType": "Muffin",
       "variation": "Chocolate Chip",
       "ingredientRequirements": [
-        { "ingredientName": "Flour",           "amount": 7.0  },
+        { "ingredientName": "Coffee Beans", "amount": 0.0 },
+        { "ingredientName": "Milk",            "amount": 6.0  },
         { "ingredientName": "Sugar",           "amount": 3.0  },
-        { "ingredientName": "Butter",          "amount": 2.0  },
-        { "ingredientName": "Chocolate Chips", "amount": 2.5  },
-        { "ingredientName": "Milk",            "amount": 6.0  }
+      	{ "ingredientName": "Flour",           "amount": 7.0  },
+     	{ "ingredientName": "Butter",          "amount": 2.0  },
+      	{ "ingredientName": "Chocolate Chips", "amount": 2.5  },
+      	{ "ingredientName": "Green Tea Leaves", "amount": 0.0 },
+      	{ "ingredientName": "Black Tea Leaves", "amount": 0.0 },
+      	{ "ingredientName": "Herbal Tea Blend", "amount": 0.0 }
       ]
     },
     {
@@ -183,10 +247,15 @@
       "pastryType": "Cookie",
       "variation": "Chocolate Chip",
       "ingredientRequirements": [
-        { "ingredientName": "Flour",           "amount": 5.0  },
+        { "ingredientName": "Coffee Beans", "amount": 0.0 },
+        { "ingredientName": "Milk",   "amount": 0.0  },
         { "ingredientName": "Sugar",           "amount": 3.0  },
-        { "ingredientName": "Butter",          "amount": 3.0  },
-        { "ingredientName": "Chocolate Chips", "amount": 2.0  }
+      	{ "ingredientName": "Flour",           "amount": 5.0  },
+     	{ "ingredientName": "Butter",          "amount": 3.0  },
+      	{ "ingredientName": "Chocolate Chips", "amount": 2.0  },
+      	{ "ingredientName": "Green Tea Leaves", "amount": 0.0 },
+      	{ "ingredientName": "Black Tea Leaves", "amount": 0.0 },
+      	{ "ingredientName": "Herbal Tea Blend", "amount": 0.0 }
       ]
     },
     {
@@ -199,9 +268,15 @@
       "pastryType": "Cookie",
       "variation": "Oatmeal Raisin",
       "ingredientRequirements": [
-        { "ingredientName": "Flour",  "amount": 5.0  },
+        { "ingredientName": "Coffee Beans", "amount": 0.0 },
+        { "ingredientName": "Milk",   "amount": 0.0  },
         { "ingredientName": "Sugar",  "amount": 2.5  },
-        { "ingredientName": "Butter", "amount": 2.5  }
+      	{ "ingredientName": "Flour",  "amount": 5.0  },
+     	{ "ingredientName": "Butter", "amount": 2.5  },
+      	{ "ingredientName": "Chocolate Chips", "amount": 0.0  },
+      	{ "ingredientName": "Green Tea Leaves", "amount": 0.0 },
+      	{ "ingredientName": "Black Tea Leaves", "amount": 0.0 },
+      	{ "ingredientName": "Herbal Tea Blend", "amount": 0.0 }
       ]
     }
   ],
