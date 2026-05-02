@@ -35,10 +35,18 @@
                     <HBox spacing="10">
                         <Button text="+ Add Item"         styleClass="btn-primary"
                                 onAction="#handleAddMenuItem"/>
-                        <Button text="✏ Edit Item"        styleClass="btn-secondary"
+                        <Button text="✏ Edit Item (Name, price, etc.)"        styleClass="btn-secondary"
                                 onAction="#handleEditMenuItem"/>
+                        <Button text="✏ Edit Item Requirements"        styleClass="btn-secondary"
+                                onAction="#handleEditItemRequirements"/>
                         <Button text="🗑 Remove Item"     styleClass="btn-danger"
                                 onAction="#handleRemoveMenuItem"/>
+                        <Button text="⏸ Edit Customizations" styleClass="btn-secondary"
+                                onAction="#handleEditCustomizations"/>
+                        <Button text="⏸ Add Customization" styleClass="btn-secondary"
+                                onAction="#handleAddCustomization"/>
+                                <Button text="🗑 Remove Customization" styleClass="btn-danger"
+                                onAction="#handleRemoveCustomization"/>
                         <Button text="⏸ Toggle Availability" styleClass="btn-secondary"
                                 onAction="#handleToggleAvailability"/>
                     </HBox>
