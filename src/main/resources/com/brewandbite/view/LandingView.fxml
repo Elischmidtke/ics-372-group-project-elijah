@@ -1,21 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+
 <VBox xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.brewandbite.controller.LandingController"
-      alignment="CENTER" spacing="30" styleClass="root-pane">
-    <padding><Insets top="80" right="60" bottom="80" left="60"/></padding>
+      alignment="CENTER"
+      spacing="30"
+      styleClass="root-pane">
+
+    <padding>
+        <Insets top="80" right="60" bottom="80" left="60"/>
+    </padding>
 
     <Label text="Brew &amp; Bite" styleClass="app-title"/>
     <Label text="Your Favourite Neighbourhood Café" styleClass="app-subtitle"/>
 
     <VBox spacing="16" alignment="CENTER" maxWidth="320">
-        <Button fx:id="customerBtn" text="I'm a Customer"
-                maxWidth="Infinity" prefHeight="52"
-                styleClass="btn-hero" onAction="#handleCustomer"/>
-        <Button fx:id="staffBtn" text="Staff Login"
-                maxWidth="Infinity" prefHeight="52"
-                styleClass="btn-secondary" onAction="#handleStaffLogin"/>
+
+        <Button fx:id="customerBtn"
+                text="I'm a Customer"
+                maxWidth="Infinity"
+                prefHeight="52"
+                styleClass="btn-hero"
+                onAction="#handleCustomerLogin"/>
+
+        <Button fx:id="staffBtn"
+                text="Staff Login"
+                maxWidth="Infinity"
+                prefHeight="52"
+                styleClass="btn-secondary"
+                onAction="#handleStaffLogin"/>
+
+        <Button text="Open Barista Window (Test)"
+                styleClass="btn-secondary"
+                onAction="#handleOpenBaristaWindow"
+                prefWidth="260"/>
+
+        <Button text="Open Manager Window (Test)"
+                styleClass="btn-secondary"
+                onAction="#handleOpenManagerWindow"
+                prefWidth="260"/>
+
     </VBox>
 </VBox>

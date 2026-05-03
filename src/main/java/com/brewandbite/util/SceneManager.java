@@ -1,5 +1,6 @@
 package com.brewandbite.util;
 
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -21,17 +22,11 @@ public class SceneManager {
     public static void setPrimaryStage(Stage stage) { primaryStage = stage; }
     public static Stage getPrimaryStage() { return primaryStage; }
 
-    /**
-     * Loads an FXML file from the classpath and replaces the current scene.
-     *
-     * @param fxmlPath classpath path, e.g. {@code "/com/brewandbite/view/CustomerView.fxml"}
-     * @param title    window title
-     */
     public static void switchTo(String fxmlPath, String title) {
         try {
             FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource(fxmlPath));
             Parent root = loader.load();
-            Scene  scene = new Scene(root);
+            Scene scene = new Scene(root);
 
             String css = "/com/brewandbite/css/style.css";
             if (SceneManager.class.getResource(css) != null) {
@@ -40,7 +35,8 @@ public class SceneManager {
 
             primaryStage.setScene(scene);
             primaryStage.setTitle(title);
-            primaryStage.centerOnScreen();
+            Platform.runLater(() -> WindowManager.clampStageToVisibleBounds(primaryStage));
+
         } catch (IOException e) {
             throw new RuntimeException("Cannot load scene: " + fxmlPath, e);
         }
