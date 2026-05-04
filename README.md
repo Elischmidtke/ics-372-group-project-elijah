@@ -1,6 +1,4 @@
-<img width="6048" height="1770" alt="Manager View Landing" src="https://github.com/user-attachments/assets/8f1c394c-c68b-41cc-b5ef-829beefea34b" />
-<img width="2616" height="1982" alt="Customer Landing View " src="https://github.com/user-attachments/assets/4720cff8-306b-4061-8390-202dfe424de7" />
-<img width="2158" height="1468" alt="Barista View Landing " src="https://github.com/user-attachments/assets/2a06a399-001a-4888-a42d-a2732d3a6971" />
+
 
 # ☕ Brew & Bite Café System
 
@@ -299,4 +297,22 @@ sequenceDiagram
     BFS -->>UI: result
     UI -->>Manager: confirmation
 ```
+---
 
+
+## Wireframes
+
+### Manager View
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/8f1c394c-c68b-41cc-b5ef-829beefea34b" alt="Manager View Landing" width="80%">
+</p>
+
+### Customer View
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/4720cff8-306b-4061-8390-202dfe424de7" alt="Customer Landing View" width="60%">
+</p>
+
+### Barista View
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/2a06a399-001a-4888-a42d-a2732d3a6971" alt="Barista View Landing" width="60%">
+</p>
