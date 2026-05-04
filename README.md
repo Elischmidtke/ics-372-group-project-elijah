@@ -133,7 +133,7 @@ the classpath to populate the initial menu and inventory.
 # Use Case Diagram
 
 <p align="center">
-	<img src="https://github.com/user-attachments/assets/d2d3ed6f-5a3b-4db1-8c80-39d1e8c45c32" alt="UseCaseDiagram" width ="90%">
+	<img src="https://github.com/user-attachments/assets/d2d3ed6f-5a3b-4db1-8c80-39d1e8c45c32" alt="UseCaseDiagram" width ="70%">
 </p>
 
 
