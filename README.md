@@ -186,10 +186,10 @@ If no save file is found, `seed_data.json` is loaded from the classpath to popul
 ## UML Class Diagram
 
 <p align="center">
-  <img
-    alt="UML Project Diagram"
-    src="https://github.com/user-attachments/assets/8bbf826b-0b8a-4d9e-88a-4d9e-88a6-5250973a383c"
-    width="90%"
+    <img 
+      alt="UMLClassDiagram" 
+      src="https://github.com/user-attachments/assets/dad0d190-22ee-4232-9c92-b33ea7b30738"
+      width="90%"
   />
 </p>
 
