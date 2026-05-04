@@ -133,7 +133,7 @@ the classpath to populate the initial menu and inventory.
 # Use Case Diagram
 
 <p align="center">
-	<img width="1320" height="1336" alt="UseCaseDiagram" src="https://github.com/user-attachments/assets/d2d3ed6f-5a3b-4db1-8c80-39d1e8c45c32" />
+	<img src="https://github.com/user-attachments/assets/d2d3ed6f-5a3b-4db1-8c80-39d1e8c45c32" alt="UseCaseDiagram" width ="90%">
 </p>
 
 
@@ -162,7 +162,7 @@ the classpath to populate the initial menu and inventory.
 
 # UML Class Diagram
 <p align="center">
-    <img src="https://github.com/user-attachments/assets/8bbf826b-0b8a-4d9e-88a6-5250973a383c" alt="UML Project Diagram" width="60%">
+    <img src="https://github.com/user-attachments/assets/8bbf826b-0b8a-4d9e-88a6-5250973a383c" alt="UML Project Diagram" width="90%">
 </p>
 
 ---
