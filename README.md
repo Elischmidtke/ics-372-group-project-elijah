@@ -130,14 +130,14 @@ the classpath to populate the initial menu and inventory.
 
 ---
 
-### Use Case Diagram
+# Use Case Diagram
 
 <p align="center">
 	<img width="1320" height="1336" alt="UseCaseDiagram" src="https://github.com/user-attachments/assets/d2d3ed6f-5a3b-4db1-8c80-39d1e8c45c32" />
 </p>
 
 
-### Conceptual Classes
+# Conceptual Classes
 ---
 | Conceptual Class Name | Translation into Software                                                                                                                                                                                                                                             | Primary Responsibility                                                                                                                                                                      |
 | --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -158,12 +158,16 @@ the classpath to populate the initial menu and inventory.
 | InventoryService      | A collection class that maintains a collection of the ingredients in the system and helps the system do important functions on ingredients like restock or deduction.                                                                                                 | Maintains the collection of the ingredients in the system and enables search functionality and important functions on ingredients like restocking or deduction after a menu item is placed. |
 | BrewBiteCafe          | Facade that was planned, but was omitted because of time constraints and the situation we were in with the system we had.                                                                                                                                             | N.A.                                                                                                                                                                                        |
 
-### UML Class Diagram
-<img width="1144" height="782" alt="UML Project Diagram" src="https://github.com/user-attachments/assets/8bbf826b-0b8a-4d9e-88a6-5250973a383c" />
+---
 
+# UML Class Diagram
+<p align="center">
+    <img src="https://github.com/user-attachments/assets/8bbf826b-0b8a-4d9e-88a6-5250973a383c" alt="UML Project Diagram" width="60%">
+</p>
 
-
-### Sequence Diagrams 
+---
+# Sequence Diagrams 
+---
 ### Diagram A: Customer Places Order
 ```mermaid
 sequenceDiagram
@@ -214,10 +218,6 @@ sequenceDiagram
 		BFS -->>UI: order is empty
 	end
 	UI -->>Customer: result
-	
-	
-    
-    
     
 ```
 
@@ -225,7 +225,7 @@ sequenceDiagram
 
 > Part of the customer controller is that it contains the order the current customer is placing items on, so there wasn't any need to have the controller try to search the order as it is just one of its attributes. This was to follow the MVC structure and have controllers make the objects. Part of OrderService's responsibility is to enable important order functionality, so that is why we decided to let it do the brunt work of the use case like looping through the orders items of an order and sending them to the Inventory service to check if the items can be made. Order Service also has observers, that should be notified when orders are placed, which is why Order Service calls itself at the end of the place order method to notify its observers.
 
-
+---
 
 ### Diagram B: Barista Changes Order Status to In Progress
 ```mermaid
@@ -259,13 +259,14 @@ sequenceDiagram
     
 ```
 
-
-
 **Design Choices:**
 
-> We had order do the updating because it is a part of the model and its primary responsibility is to maintain orders. We're using order service to separate the model and controller to lower coupling and improve cohesion as it should be OrderService, not the controller that does the updating. 
+> We had order do the updating because it is a part of the model and its primary responsibility is to maintain orders. We're using order service to separate the model and controller to lower coupling and improve cohesion as it should be OrderService, not the controller that does the updating.
+
+---
 
 ### Diagram C: Manger restocks Ingredient
+
 ```mermaid
 sequenceDiagram
     actor Manager
@@ -291,6 +292,8 @@ sequenceDiagram
 ```
 
 **Design Choices:**
+
+---
 
 > To follow the shoemaker principle we put the restock method in the InventoryService Class as it contains all the different ingredient objects in the system and can perform operations on them. Similar to the other two sequence diagrams, we have the controller more so call methods from classes in the model than perform the functions themselves to lower coupling between the controller and model layer.  
 ---
