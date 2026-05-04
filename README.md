@@ -158,6 +158,10 @@ the classpath to populate the initial menu and inventory.
 | InventoryService      | A collection class that maintains a collection of the ingredients in the system and helps the system do important functions on ingredients like restock or deduction.                                                                                                 | Maintains the collection of the ingredients in the system and enables search functionality and important functions on ingredients like restocking or deduction after a menu item is placed. |
 | BrewBiteCafe          | Facade that was planned, but was omitted because of time constraints and the situation we were in with the system we had.                                                                                                                                             | N.A.                                                                                                                                                                                        |
 
+### UML Class Diagram
+<img width="1155" height="785" alt="UML Project Diagram" src="https://github.com/user-attachments/assets/b0f27594-207e-4504-a6c2-a3534a90cef3" />
+
+
 ### Sequence Diagrams 
 ### Diagram A: Customer Places Order
 **Sequence Diagram A**
