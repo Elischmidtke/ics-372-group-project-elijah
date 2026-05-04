@@ -165,68 +165,54 @@ the classpath to populate the initial menu and inventory.
 
 ### Sequence Diagrams 
 ### Diagram A: Customer Places Order
-**Sequence Diagram A**
 ```mermaid
 sequenceDiagram
     actor Customer
     participant UI as UserInterface
-    participant BFS as Barista Brew System
-    participant Menu as Menu
-    participant TO as tempOrders
-    participant Orders as Orders
-    participant IN as Inventory
+    participant BFS as CustomerController
+    participant Order as Order
+    participant Orders as OrderService
+    participant OI as OrderItem
+    participant Menu as MenuService
+    participant IN as InventoryService
+    
     %% Add more participants as needed
 
     %% Your diagram here
-    Customer ->>UI: Picks Customer
-    UI ->>Customer: input name
-    Customer -->>UI: their name
-    UI ->>BFS: createOrder(name)
-    create participant Order
-	BFS ->>Order: create(name)
-	BFS ->>TO: addOrder(Order)
-	BFS -->>UI:Result
-	UI ->>BFS: getMenu()
-	BFS ->>Menu: getItems()
-	create participant IM as Iterator (MenuItems)
-	Menu ->>IM: create()
-	Menu -->>BFS: Iterator
-	BFS -->>UI: Iterator
-	loop until no more items to display
-		UI ->>IM: getNext()
-		IM -->>UI: MenuItem
-		UI ->>Customer: menuItem
-	end
-	loop until customer is done adding items
-		Customer ->>UI: adds item
-		UI ->>BFS: addItemToOrder(itemID, orderID)
-		create participant MI as MenuItem
-		BFS ->>MI: create()
-		BFS ->>IN: canMakeItem(menuItem)
-		IN ->>BFS: true/false
-		alt item can be made
-			BFS ->>IN: deductIngredients(menuItem, 1)
-			BFS ->>Order: addItem(menuItem)
-			BFS -->>UI: result
-			UI -->>Customer: confirmation
-		else item can't be made
-			BFS -->>UI: result
-			UI -->>Customer: Item can't be made
-		end
-	end
 	Customer ->>UI: Click place order
-	UI ->>BFS: PlaceOrder(orderID)
-	BFS ->>TO: getOrder(orderID)
-	TO -->>BFS: order1
+	UI ->>BFS: handlePlaceOrder()
 	BFS ->>Order: isEmpty()
 	Order -->>BFS: true/false
 	alt if order isn't empty
-		BFS ->>TO: removeOrder(orderID)
-		BFS ->>Orders: addOrder(order1)
+		BFS ->>Orders: placeOrder(order)
+		Orders ->>Order: getItems()
+		Order -->>Orders: list of order Items
+		loop until every order item has been processed or there is missing ingredients
+			Orders ->>OI: getMenuItemID()
+			OI -->>Orders: ID
+			Orders ->>Menu: getMenuItem(ID)
+			Menu -->>Orders: MenuItem
+			Orders ->>OI: getQuantity()
+			OI -->> Orders: quantity
+			Orders ->>IN: getMissingIngredients(MenuItem, quantity)
+			IN -->>Orders: List of missing of ingredients
+			alt list is empty
+				Orders -->>Orders: continue
+			else list contains an ingredient
+				Orders -->>BFS: error message
+				BFS -->>UI: result
+			end
+		end
+		loop until all menu items are deducted
+			Orders ->>IN: deductIngredients(MenuItem, quantity) 
+		end
+		Orders ->>Order: setStatus(Pending)	
+		Orders ->>Orders: addOrder(Order)
+		Orders ->>Orders: notifyObservers(OrderEvent)
+		BFS ->>UI: result	
 	else order is empty
-		BFS ->>TO: removeOrder(orderID)
+		BFS -->>UI: order is empty
 	end
-	BFS -->>UI: result
 	UI -->>Customer: result
 	
 	
@@ -235,117 +221,78 @@ sequenceDiagram
     
 ```
 
-**Sequence Diagram B**
-```mermaid
-sequenceDiagram
-    actor Customer
-    participant UI as UserInterface
-    participant BFS as Barista Brew System
-    participant IN as Inventory
-    participant Menu as Menu
-    participant Orders as Orders
-    %% Add more participants as needed
+**Design Choices:**
 
-    %% Your diagram here
-    Customer ->>UI: Picks Customer
-    UI ->>Customer: input name
-    Customer -->>UI: their name
-    UI ->>BFS: getMenu()
-	BFS ->>Menu: getItems()
-	create participant IM as Iterator (MenuItems)
-	Menu ->>IM: create()
-	Menu -->>BFS: Iterator
-	BFS -->>UI: Iterator
-    loop until no more items to display
-		UI ->>IM: getNext()
-		IM -->>UI: MenuItem
-		UI ->>Customer: menuItem
-	end
-	loop until customer is done adding items
-		Customer ->>UI: adds item (gives the itemID)
-	end
-    Customer ->>UI: clicks place order button
-    UI ->>BFS: placeOrder(name, itemList)
-    opt item list contains items
-	    create participant Order
-		BFS ->>Order: create(name)
-		loop until no more itemIDs or item can't be made
-			create participant MI as MenuItem
-			BFS ->>MI: create()
-			BFS ->>IN: canMakeItem()
-			IN ->>BFS: true/false
-			alt item can be made
-				BFS ->>IN: deductIngredients(menuItem)
-				BFS ->>Order: addItem(menuItem)
-			else item can't be made
-				BFS -->>UI: result
-				UI ->>Customer:result
-			end
-		end
-		BFS ->>Orders: addOrder(Order)
-	end
-	BFS -->>UI:Result
-	UI -->>Customer: confirmation
-	
-    
-    
-    
-```
+> Part of the customer controller is that it contains the order the current customer is placing items on, so there wasn't any need to have the controller try to search the order as it is just one of its attributes. This was to follow the MVC structure and have controllers make the objects. Part of OrderService's responsibility is to enable important order functionality, so that is why we decided to let it do the brunt work of the use case like looping through the orders items of an order and sending them to the Inventory service to check if the items can be made. Order Service also has observers, that should be notified when orders are placed, which is why Order Service calls itself at the end of the place order method to notify its observers.
 
 
 
-### Diagram B: Customer Places Order
-**Sequence Diagram A**
+### Diagram B: Barista Changes Order Status to In Progress
 ```mermaid
 sequenceDiagram
     actor Barista
     participant UI as UserInterface
-    participant BFS as Barista Brew System
-    participant O as Order (order1)
-    participant Orders as Orders
+    participant BFS as BaristaController
+    participant Orders as OrderService
+    participant O as Order
     %% Add more participants as needed
 
     %% Your diagram here
-    Barista ->>UI: change order status
-    Barista -->>UI: orderID and new status
-    UI ->>BFS: updateOrder(orderID, status)
-    BFS ->>Orders: getOrder(orderID)
-    Orders -->>BFS: order1
-    BFS ->>Order: changeStatus(status)
-    BFS -->>UI: result
-    UI -->>Barista: result
-	
-	
-    
-    
+    Barista ->>UI: Picks Order
+    Barista ->>UI: Presses mark as In progress
+    UI ->>BFS: handleMarkInProgress()
+    UI -->>BFS: Order Picked
+    BFS ->>BFS: is order null
+    BFS ->>O: getStatus()
+    O -->>BFS: stats 
+    alt order is not null and is pending
+	    BFS ->>Orders: updateOrderStatus(order, Status)
+	    Orders ->>O: setStatus(Status)
+	    Orders ->>Orders: notifyObservers(OrderEvent)
+	    Orders -->>BFS: result
+	    BFS -->>UI: result
+	    UI ->>Barista: result
+	else order is null or is not pending
+		BFS -->>UI: result
+	    UI ->>Barista: result
+	end
     
 ```
 
 
+
+**Design Choices:**
+
+> We had order do the updating because it is a part of the model and its primary responsibility is to maintain orders. We're using order service to separate the model and controller to lower coupling and improve cohesion as it should be OrderService, not the controller that does the updating. 
+
 ### Diagram C: Manger restocks Ingredient
-**Sequence Diagram A**
 ```mermaid
 sequenceDiagram
     actor Manager
     participant UI as UserInterface
-    participant BFS as Barista Brew System
+    participant BFS as ManagerController
+    participant IN as InventoryService
     participant ingredient as Ingredient (ingredient1)
-    participant IN as Inventory
     %% Add more participants as needed
 
     %% Your diagram here
-    Manager ->>UI: picks Ingredient to restock with amount
+    Manager ->>UI: Picks Restock Ingredient
     Manager -->>UI: Ingredient name and amount to restock
     UI ->>BFS: restockIngredient(ingredientName, amount)
     BFS ->>IN: restock(ingredientName, amount)
     IN ->>IN: findIngredint(ingredientName)
     IN -->>IN: ingredient
     IN ->>ingredient: getQuantity()
-    ingredient ->>IN: quantity
+    ingredient -->>IN: quantity
     IN ->>ingredient: setQuantity(quantity + amount)
+    IN -->>BFS: result
     BFS -->>UI: result
     UI -->>Manager: confirmation
 ```
+
+**Design Choices:**
+
+> To follow the shoemaker principle we put the restock method in the InventoryService Class as it contains all the different ingredient objects in the system and can perform operations on them. Similar to the other two sequence diagrams, we have the controller more so call methods from classes in the model than perform the functions themselves to lower coupling between the controller and model layer.  
 ---
 
 
