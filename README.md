@@ -82,8 +82,60 @@ brew-and-bite/
                 ├── ManagerView.fxml
                 └── module-info-placeholder.txt
 ```
+## Architectural Layers and MVC Structure
 
-> Tip (for PDFs / printing): if you export this README to PDF, consider using a renderer that supports CSS page-break controls. The layout below minimizes awkward breaks by keeping each section self-contained and avoiding overly long single paragraphs.
+The diagram above outlines the architectural layers of the application and illustrates how the components align with the **Model–View–Controller (MVC)** pattern implemented in this system.
+
+---
+
+## Justification for MVC Design Choices
+
+### High Cohesion
+
+- All **UI controller** components focus exclusively on user interface responsibilities, such as handling events and updating the view.
+- All **domain classes** focus specifically on domain rules and application state.
+- All **persistence classes** focus strictly on saving and loading data.
+
+### Low Coupling
+
+- The UI does not need to directly manipulate the model’s internal state.
+- User actions are handled through the controller layer.
+- The domain layer does not depend on JavaFX UI classes.
+- Changes in the persistence layer require minimal changes outside that layer.
+
+---
+
+## Applied OOP Principles and Design Patterns
+
+### Factory Pattern
+
+The **Factory Pattern** was implemented to decouple the creation of menu items and hide concrete classes from the calling code.
+
+- The UI requests an object, and the specific object type is determined by a factory.
+- Callers depend on abstractions rather than concrete constructors.
+- Concrete factory-related classes include:
+  - `PastryFactory`
+  - `MenuItemFactory`
+  - `BeverageFactory`
+
+### Observer Pattern
+
+An **Observer Pattern** subsystem was explicitly implemented for menu updates using JavaFX’s built-in observable mechanisms, along with a separate subsystem for order events and notifications.
+
+- Classes such as `OrderService`, `OrderEvent`, and `OrderObserver` follow the structure of the Observer Pattern.
+- The model exposes observable state, and the UI updates automatically when that state changes.
+- The UI does not directly call model code to force updates.
+
+### Singleton Pattern
+
+A **Singleton Pattern** is explicitly used in the system through `SessionStore`.
+
+- It provides app-wide shared state and services.
+- A single shared instance is enforced through `SessionStore`.
+- This allows controllers to access shared state and services without requiring them to be passed through constructors.
+
+###
+
 
 ---
 
