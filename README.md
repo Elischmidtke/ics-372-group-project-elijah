@@ -14,8 +14,15 @@ brew-and-bite/
 └── src/
     └── main/
         ├── java/com/brewandbite/
-        |   ├── Main.java                         # Application entry point
-        │   ├── MainApp.java                      
+        │   ├── Main.java                         # Application entry point
+        │   ├── MainApp.java                      # JavaFX bootstrap + service wiring
+        │   ├── controller/
+        │   │   ├── LandingController.java        # Role selection screen
+        │   │   ├── LoginController.java          # Barista / Manager login
+        │   │   ├── CustomerController.java       # Browse, customise, order
+        │   │   ├── CustomerOrderStatusController.java  # Order tracking window
+        │   │   ├── BaristaController.java        # View & fulfil orders
+        │   │   └── ManagerController.java        # Menu, inventory, sales
         │   ├── model/
         │   │   ├── MenuItem.java                 # Abstract base (polymorphic JSON)
         │   │   ├── Beverage.java                 # Coffee / Tea items with sizes
@@ -26,31 +33,39 @@ brew-and-bite/
         │   │   ├── Order.java                    # A customer's placed order
         │   │   ├── OrderItem.java                # One line in an order
         │   │   ├── UserRole.java                 # CUSTOMER | BARISTA | MANAGER
-        │   │   └── AppData.java                  # Root JSON wrapper
+        │   │   ├── AppData.java                  # Root JSON wrapper
+        │   │   ├── MenuItemRequest.java          # DTO for creating/editing menu items
+        │   │   ├── MenuItemFactory.java          # Factory Method base
+        │   │   ├── BeverageFactory.java          # Creates Beverage items
+        │   │   └── PastryFactory.java            # Creates Pastry items
+        │   ├── notification/
+        │   │   ├── OrderObserver.java            # Observer interface
+        │   │   ├── OrderEvent.java               # Event payload
+        │   │   └── OrderEventType.java           # Event types enum
         │   ├── service/
         │   │   ├── AuthService.java              # Hardcoded credential check
         │   │   ├── InventoryService.java         # Stock check & deduction
-        │   │   ├── MenuService.java              # Observable menu CRUD
-        │   │   ├── OrderService.java             # Place & update orders
-        │   │   └── PersistenceService.java       # Load/save JSON via Jackson
-        │   ├── controller/
-        │   │   ├── LandingController.java        # Role selection screen
-        │   │   ├── LoginController.java          # Barista / Manager login
-        │   │   ├── CustomerController.java       # Browse, customise, order
-        │   │   ├── BaristaController.java        # View & fulfil orders
-        │   │   └── ManagerController.java        # Menu, inventory, sales
+        │   │   ├── MenuService.java              # Menu CRUD + persistence
+        │   │   ├── OrderService.java             # Place & update orders + notify observers
+        │   │   ├── PersistenceService.java       # Load/save JSON via Jackson
+        │   │   └── FactoryService.java           # Chooses MenuItemFactory by type
         │   └── util/
         │       ├── SceneManager.java             # FXML scene switching
-        │       └── SessionStore.java             # Singleton app-wide state
+        │       ├── SessionStore.java             # Singleton app-wide state/services
+        │       └── WindowManager.java            # Opens/clamps extra windows
         └── resources/com/brewandbite/
-            ├── css/style.css                     # Coffee-themed stylesheet
-            ├── data/seed_data.json               # Default menu & inventory
+            ├── css/
+            │   └── style.css                     # Coffee-themed stylesheet
+            ├── data/
+            │   └── seed_data.json                # Default menu & inventory
             └── view/
                 ├── LandingView.fxml
                 ├── LoginView.fxml
                 ├── CustomerView.fxml
+                ├── CustomerOrderStatusView.fxml  # New (Main-v2.0)
                 ├── BaristaView.fxml
-                └── ManagerView.fxml
+                ├── ManagerView.fxml
+                └── module-info-placeholder.txt
 ```
 
 ---
