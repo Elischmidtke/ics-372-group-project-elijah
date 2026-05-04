@@ -159,7 +159,8 @@ the classpath to populate the initial menu and inventory.
 | BrewBiteCafe          | Facade that was planned, but was omitted because of time constraints and the situation we were in with the system we had.                                                                                                                                             | N.A.                                                                                                                                                                                        |
 
 ### UML Class Diagram
-<img width="1155" height="785" alt="UML Project Diagram" src="https://github.com/user-attachments/assets/b0f27594-207e-4504-a6c2-a3534a90cef3" />
+<img width="1144" height="782" alt="UML Project Diagram" src="https://github.com/user-attachments/assets/8bbf826b-0b8a-4d9e-88a6-5250973a383c" />
+
 
 
 ### Sequence Diagrams 
