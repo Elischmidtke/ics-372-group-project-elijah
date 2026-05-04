@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.brewandbite.controller.CustomerOrderStatusController"
+      spacing="12" styleClass="root-pane">
+
+    <padding>
+        <Insets top="16" right="16" bottom="16" left="16"/>
+    </padding>
+
+    <Label text="Order Status" styleClass="section-title"/>
+
+    <Label fx:id="orderIdLabel" text="Order: —" styleClass="detail-label" wrapText="true"/>
+    <Label fx:id="customerLabel" text="Customer: —" styleClass="detail-label" wrapText="true"/>
+
+    <Separator/>
+
+    <Label text="Current Status:" styleClass="section-title"/>
+    <Label fx:id="statusValueLabel" text="—" styleClass="status-info" wrapText="true"/>
+
+    <Label text="Notifications:" styleClass="section-title"/>
+    <ListView fx:id="notificationsListView" VBox.vgrow="ALWAYS"/>
+
+    <HBox spacing="10">
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button text="Close" styleClass="btn-secondary" onAction="#handleClose"/>
+    </HBox>
+</VBox>

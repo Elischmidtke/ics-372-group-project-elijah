@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.brewandbite.controller.ManagerController"
+            styleClass="root-pane">
+
+    <top>
+        <HBox styleClass="top-bar" alignment="CENTER_LEFT" spacing="16">
+            <padding><Insets top="12" right="20" bottom="12" left="20"/></padding>
+            <Label text="Brew &amp; Bite — Manager Dashboard" styleClass="top-bar-title"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Button text="Logout" styleClass="btn-logout" onAction="#handleLogout"/>
+        </HBox>
+    </top>
+
+    <center>
+        <TabPane tabClosingPolicy="UNAVAILABLE">
+
+            <!-- MENU MANAGEMENT -->
+            <Tab text="Menu Management">
+                <VBox spacing="10">
+                    <padding><Insets top="16" right="16" bottom="16" left="16"/></padding>
+                    <Label text="Menu Items" styleClass="section-title"/>
+                    <TableView fx:id="menuTable" VBox.vgrow="ALWAYS">
+                        <columns>
+                            <TableColumn fx:id="colId"       text="ID"          prefWidth="130"/>
+                            <TableColumn fx:id="colName"     text="Name"        prefWidth="180"/>
+                            <TableColumn fx:id="colCategory" text="Category"    prefWidth="100"/>
+                            <TableColumn fx:id="colPrice"    text="Base Price"  prefWidth="110"/>
+                            <TableColumn fx:id="colAvail"    text="Available"   prefWidth="90"/>
+                        </columns>
+                    </TableView>
+                    <HBox spacing="10">
+                        <Button text="+ Add Item"         styleClass="btn-primary"
+                                onAction="#handleAddMenuItem"/>
+                        <Button text="✏ Edit Item"        styleClass="btn-secondary"
+                                onAction="#handleEditMenuItem"/>
+                        <Button text="🗑 Remove Item"     styleClass="btn-danger"
+                                onAction="#handleRemoveMenuItem"/>
+                        <Button text="⏸ Toggle Availability" styleClass="btn-secondary"
+                                onAction="#handleToggleAvailability"/>
+                    </HBox>
+                    <Label fx:id="menuStatusLabel" styleClass="status-info" wrapText="true"/>
+                </VBox>
+            </Tab>
+
+            <!-- INVENTORY -->
+            <Tab text="Inventory">
+                <VBox spacing="10">
+                    <padding><Insets top="16" right="16" bottom="16" left="16"/></padding>
+                    <Label text="Ingredient Inventory" styleClass="section-title"/>
+                    <TableView fx:id="inventoryTable" VBox.vgrow="ALWAYS">
+                        <columns>
+                            <TableColumn fx:id="colIngName" text="Ingredient" prefWidth="200"/>
+                            <TableColumn fx:id="colIngQty"  text="Quantity"   prefWidth="140"/>
+                            <TableColumn fx:id="colIngUnit" text="Unit"       prefWidth="100"/>
+                        </columns>
+                    </TableView>
+                    <TitledPane text="Restock Ingredient" expanded="true">
+                        <GridPane hgap="12" vgap="10">
+                            <padding><Insets top="12" right="12" bottom="12" left="12"/></padding>
+                            <Label text="Ingredient Name:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                            <TextField fx:id="restockNameField" promptText="e.g. Coffee Beans"
+                                       GridPane.columnIndex="1" GridPane.rowIndex="0" prefWidth="220"/>
+                            <Label text="Amount to Add:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                            <TextField fx:id="restockAmountField" promptText="e.g. 500"
+                                       GridPane.columnIndex="1" GridPane.rowIndex="1" prefWidth="220"/>
+                            <Button text="Restock" styleClass="btn-primary"
+                                    onAction="#handleRestock"
+                                    GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+                        </GridPane>
+                    </TitledPane>
+                    <Label fx:id="inventoryStatusLabel" styleClass="status-info" wrapText="true"/>
+                </VBox>
+            </Tab>
+
+            <!-- SALES / ORDERS -->
+            <Tab text="Sales &amp; Orders">
+                <VBox spacing="10">
+                    <padding><Insets top="16" right="16" bottom="16" left="16"/></padding>
+                    <Label text="All Orders" styleClass="section-title"/>
+                    <TableView fx:id="salesTable" VBox.vgrow="ALWAYS">
+                        <columns>
+                            <TableColumn fx:id="colOrdId"       text="Order ID"    prefWidth="150"/>
+                            <TableColumn fx:id="colOrdCustomer" text="Customer"    prefWidth="130"/>
+                            <TableColumn fx:id="colOrdStatus"   text="Status"      prefWidth="110"/>
+                            <TableColumn fx:id="colOrdTime"     text="Timestamp"   prefWidth="160"/>
+                            <TableColumn fx:id="colOrdTotal"    text="Total (USD)" prefWidth="110"/>
+                        </columns>
+                    </TableView>
+                    <Label fx:id="totalSalesLabel" styleClass="total-label"/>
+                </VBox>
+            </Tab>
+
+        </TabPane>
+    </center>
+</BorderPane>
