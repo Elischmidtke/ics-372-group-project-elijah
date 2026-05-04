@@ -300,11 +300,11 @@ sequenceDiagram
 ---
 
 
-## Wireframes
+## UI Wireframes
 
 ### Manager View
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/8f1c394c-c68b-41cc-b5ef-829beefea34b" alt="Manager View Landing" width="80%">
+  <img width="2166" height="1770" alt="Manager View Landing" src="https://github.com/user-attachments/assets/9ce5d026-3dea-4fee-ac40-e01498364ce3" />
 </p>
 
 ### Customer View
