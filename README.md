@@ -1,3 +1,5 @@
+
+
 # ☕ Brew & Bite Café System
 
 A JavaFX desktop application simulating a café ordering and management system.
@@ -295,4 +297,22 @@ sequenceDiagram
     BFS -->>UI: result
     UI -->>Manager: confirmation
 ```
+---
 
+
+## UI Wireframes
+
+### Manager View
+<p align="center">
+  <img width="2166" height="1770" alt="Manager View Landing" src="https://github.com/user-attachments/assets/9ce5d026-3dea-4fee-ac40-e01498364ce3" />
+</p>
+
+### Customer View
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/4720cff8-306b-4061-8390-202dfe424de7" alt="Customer Landing View" width="60%">
+</p>
+
+### Barista View
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/2a06a399-001a-4888-a42d-a2732d3a6971" alt="Barista View Landing" width="60%">
+</p>
