@@ -133,7 +133,7 @@ the classpath to populate the initial menu and inventory.
 # Use Case Diagram
 
 <p align="center">
-	<img src="https://github.com/user-attachments/assets/d2d3ed6f-5a3b-4db1-8c80-39d1e8c45c32" alt="UseCaseDiagram" width ="70%">
+  <img height="80%" width="100%" alt="UseCaseDiagram" src="https://github.com/user-attachments/assets/d2d3ed6f-5a3b-4db1-8c80-39d1e8c45c32" />
 </p>
 
 
@@ -162,7 +162,7 @@ the classpath to populate the initial menu and inventory.
 
 # UML Class Diagram
 <p align="center">
-    <img src="https://github.com/user-attachments/assets/8bbf826b-0b8a-4d9e-88a6-5250973a383c" alt="UML Project Diagram" width="90%">
+    <img src="https://github.com/user-attachments/assets/8bbf826b-0b8a-4d9e-88a6-5250973a383c" alt="UML Project Diagram" width="90%" height="80%">
 </p>
 
 ---
@@ -299,20 +299,20 @@ sequenceDiagram
 ---
 
 
-## UI Wireframes
+# UI Wireframes
 
 ### Manager View
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/9ce5d026-3dea-4fee-ac40-e01498364ce3" alt="Manager View Landing" width="60%">
+  <img src="https://github.com/user-attachments/assets/9ce5d026-3dea-4fee-ac40-e01498364ce3" alt="Manager View Landing" width="60%" height="80%>
 </p>
 
 ### Customer View
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/4720cff8-306b-4061-8390-202dfe424de7" alt="Customer Landing View" width="60%">
+  <img src="https://github.com/user-attachments/assets/4720cff8-306b-4061-8390-202dfe424de7" alt="Customer Landing View" width="60%"height="80%>
 </p>
 
 ### Barista View
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/2a06a399-001a-4888-a42d-a2732d3a6971" alt="Barista View Landing" width="60%">
+  <img src="https://github.com/user-attachments/assets/2a06a399-001a-4888-a42d-a2732d3a6971" alt="Barista View Landing" width="60%"height="80%>
 </p>
 
