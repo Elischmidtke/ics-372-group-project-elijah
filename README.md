@@ -303,16 +303,16 @@ sequenceDiagram
 
 ### Manager View
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/9ce5d026-3dea-4fee-ac40-e01498364ce3" alt="Manager View Landing" width="60%" height="80%>
+  <img src="https://github.com/user-attachments/assets/9ce5d026-3dea-4fee-ac40-e01498364ce3" alt="Manager View Landing" width="60%" height="80%">
 </p>
 
 ### Customer View
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/4720cff8-306b-4061-8390-202dfe424de7" alt="Customer Landing View" width="60%"height="80%>
+  <img src="https://github.com/user-attachments/assets/4720cff8-306b-4061-8390-202dfe424de7" alt="Customer Landing View" width="60%"height="80%">
 </p>
 
 ### Barista View
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/2a06a399-001a-4888-a42d-a2732d3a6971" alt="Barista View Landing" width="60%"height="80%>
+  <img src="https://github.com/user-attachments/assets/2a06a399-001a-4888-a42d-a2732d3a6971" alt="Barista View Landing" width="60%"height="80%">
 </p>
 
