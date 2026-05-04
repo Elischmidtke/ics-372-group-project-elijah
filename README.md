@@ -113,6 +113,18 @@ the classpath to populate the initial menu and inventory.
 | Shared state | `SessionStore` singleton holds all services |
 | No Canvas drawing | Pure JavaFX layout nodes (VBox, TableView, TabPane, etc.) |
 
+---
+
+### Use Case Diagram
+
+<p align="center">
+	<img width="1320" height="1336" alt="UseCaseDiagram" src="https://github.com/user-attachments/assets/d2d3ed6f-5a3b-4db1-8c80-39d1e8c45c32" />
+</p>
+
+
+
+---
+
 
 ### Sequence Diagrams 
 ### Diagram A: Customer Places Order
