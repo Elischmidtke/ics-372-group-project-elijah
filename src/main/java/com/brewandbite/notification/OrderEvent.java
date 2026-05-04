@@ -13,7 +13,13 @@ public class OrderEvent {
         this.message = message;
     }
 
-    public OrderEventType getType() { return type; }
-    public Order getOrder() { return order; }
-    public String getMessage() { return message; }
+    public OrderEventType getType() { 
+    	return type; 
+    }
+    public Order getOrder() { 
+    	return order; 
+    }
+    public String getMessage() { 
+    	return message; 
+    }
 }

@@ -10,7 +10,11 @@ import com.brewandbite.model.MenuItem;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
-
+import com.brewandbite.util.WindowManager;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -192,19 +196,42 @@ public class CustomerController implements OrderObserver {
 
     @FXML
     private void handlePlaceOrder() {
+
         if (currentOrder.getItems().isEmpty()) {
             setStatus("Your order is empty — please add items first.");
             return;
         }
-        String error = orderService.placeOrder(currentOrder);
+
+        String me = SessionStore.getInstance().getCurrentUserName();
+        if (me == null || me.isBlank()) {
+            setStatus("Please enter your name before placing an order.");
+            return;
+        }
+        currentOrder.setCustomerName(me);
+
+        Order placedOrder = currentOrder;
+
+        String error = orderService.placeOrder(placedOrder);
         if (error != null) {
             setStatus("Order failed: " + error);
             return;
         }
-        setStatus("Order placed! ID: " + currentOrder.getOrderId());
-        currentOrder = new Order(SessionStore.getInstance().getCurrentUserName());
-        refreshOrderSummary();
-        refreshMenu();
+
+        setStatus("Order placed! ID: " + placedOrder.getOrderId());
+
+        // 1) Open notifications/status window first
+        openOrderStatusWindow(placedOrder);
+
+        // 2) Stop CustomerController from receiving events
+        orderService.removeObserver(this);
+
+        // 3) Clear session to “log out” (only if your SessionStore supports it)
+        // If you don't have these methods, tell me what SessionStore looks like and I'll adapt.
+        SessionStore.getInstance().setCurrentUserName(null);
+        SessionStore.getInstance().setCurrentRole(null);
+
+        // 4) Return to landing screen
+        SceneManager.switchTo("/com/brewandbite/view/LandingView.fxml", "Brew & Bite");
     }
 
     @FXML
@@ -228,14 +255,40 @@ public class CustomerController implements OrderObserver {
     
     @Override
     public void onOrderEvent(OrderEvent event) {
-        // Only notify the logged-in customer about their own orders
         String me = SessionStore.getInstance().getCurrentUserName();
-        if (event.getOrder() == null) return;
-        if (!me.equals(event.getOrder().getCustomerName())) return;
+        if (me == null || me.isBlank()) return;
+        if (event == null || event.getOrder() == null) return;
 
-        Platform.runLater(() -> {
-            // Reuse your existing status label
-            statusLabel.setText(event.getMessage());
-        });
+        String customer = event.getOrder().getCustomerName();
+        if (customer == null || !customer.equals(me)) return;
+
+        Platform.runLater(() -> statusLabel.setText(event.getMessage()));
+    }
+    
+    private void openOrderStatusWindow(Order placedOrder) {
+        try {
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource("/com/brewandbite/view/CustomerOrderStatusView.fxml")
+            );
+            Parent root = loader.load();
+
+            CustomerOrderStatusController controller = loader.getController();
+            controller.setOrderToTrack(placedOrder);
+
+            Scene scene = new Scene(root);
+
+            String css = "/com/brewandbite/css/style.css";
+            if (getClass().getResource(css) != null) {
+                scene.getStylesheets().add(getClass().getResource(css).toExternalForm());
+            }
+
+            Stage stage = new Stage();
+            stage.setTitle("Brew & Bite — Order Status");
+            stage.setScene(scene);
+            stage.centerOnScreen();
+            stage.show();
+        } catch (Exception e) {
+            setStatus("Order placed, but could not open status window: " + e.getMessage());
+        }
     }
 }

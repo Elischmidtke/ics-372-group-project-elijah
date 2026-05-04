@@ -1,6 +1,7 @@
 package com.brewandbite.service;
 
 import com.brewandbite.model.AppData;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
@@ -19,7 +20,14 @@ public class PersistenceService {
 
     public PersistenceService() {
         mapper = new ObjectMapper();
+
+        // Pretty JSON output
         mapper.enable(SerializationFeature.INDENT_OUTPUT);
+
+        // IMPORTANT: allow older/newer saved JSON files to load even if fields changed.
+        // Fixes: Unrecognized field "displayType" (and similar future schema changes).
+        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+
         new File(DATA_DIR).mkdirs();
     }
 

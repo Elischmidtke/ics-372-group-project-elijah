@@ -1,0 +1,222 @@
+{
+  "menuItems": [
+    {
+      "type": "beverage",
+      "id": "BEV-LATTE-001",
+      "name": "Latte",
+      "category": "Beverage",
+      "basePrice": 5.0,
+      "available": true,
+      "beverageType": "Coffee",
+      "sizePrices": { "Small": 3.0, "Medium": 5.0, "Large": 8.0 },
+      "availableCustomizations": [
+        { "name": "Extra Shot",      "extraCost": 2.0  },
+        { "name": "Oat Milk",        "extraCost": 3.0  },
+        { "name": "Almond Milk",     "extraCost": 3.0  },
+        { "name": "Decaf",           "extraCost": 0.0   },
+        { "name": "Sugar-free Syrup","extraCost": 2.0  }
+      ],
+      "ingredientRequirements": [
+        { "ingredientName": "Coffee Beans", "amount": 18.0 },
+        { "ingredientName": "Milk",         "amount": 20.0 }
+      ]
+    },
+    {
+      "type": "beverage",
+      "id": "BEV-CAPP-002",
+      "name": "Cappuccino",
+      "category": "Beverage",
+      "basePrice": 330.0,
+      "available": true,
+      "beverageType": "Coffee",
+      "sizePrices": { "Small": 3.0, "Medium": 5.0, "Large": 8.0 },
+      "availableCustomizations": [
+        { "name": "Extra Shot",      "extraCost": 2.0 },
+        { "name": "Oat Milk",        "extraCost": 3.0 },
+        { "name": "Sugar-free Syrup","extraCost": 2.0 }
+      ],
+      "ingredientRequirements": [
+        { "ingredientName": "Coffee Beans", "amount": 18.0 },
+        { "ingredientName": "Milk",         "amount": 12.0 }
+      ]
+    },
+    {
+      "type": "beverage",
+      "id": "BEV-ESPR-003",
+      "name": "Espresso",
+      "category": "Beverage",
+      "basePrice": 2.5,
+      "available": true,
+      "beverageType": "Coffee",
+      "sizePrices": { "Single": 2.5, "Double": 3.2 },
+      "availableCustomizations": [
+        { "name": "Extra Shot", "extraCost": 2.0 }
+      ],
+      "ingredientRequirements": [
+        { "ingredientName": "Coffee Beans", "amount": 14.0 }
+      ]
+    },
+    {
+      "type": "beverage",
+      "id": "BEV-GRNT-004",
+      "name": "Green Tea",
+      "category": "Beverage",
+      "basePrice": 2.8,
+      "available": true,
+      "beverageType": "Tea",
+      "sizePrices": { "Small": 2.8, "Medium": 3.2, "Large": 3.6 },
+      "availableCustomizations": [
+        { "name": "Honey",           "extraCost": 3.0 },
+        { "name": "Oat Milk",        "extraCost": 3.0 },
+        { "name": "Sugar-free Syrup","extraCost": 2.0 }
+      ],
+      "ingredientRequirements": [
+        { "ingredientName": "Green Tea Leaves", "amount": 5.0 },
+        { "ingredientName": "Sugar",            "amount": 10.0 }
+      ]
+    },
+    {
+      "type": "beverage",
+      "id": "BEV-BLKT-005",
+      "name": "Black Tea",
+      "category": "Beverage",
+      "basePrice": 2.6,
+      "available": true,
+      "beverageType": "Tea",
+      "sizePrices": { "Small": 2.6, "Medium": 3.0, "Large": 3.4 },
+      "availableCustomizations": [
+        { "name": "Milk",  "extraCost": 3.0 },
+        { "name": "Honey", "extraCost": 3.0 }
+      ],
+      "ingredientRequirements": [
+        { "ingredientName": "Black Tea Leaves", "amount": 5.0 },
+        { "ingredientName": "Sugar",            "amount": 10.0 }
+      ]
+    },
+    {
+      "type": "beverage",
+      "id": "BEV-HRBT-006",
+      "name": "Herbal Tea",
+      "category": "Beverage",
+      "basePrice": 2.7,
+      "available": true,
+      "beverageType": "Tea",
+      "sizePrices": { "Small": 2.7, "Medium": 3.1, "Large": 3.5 },
+      "availableCustomizations": [
+        { "name": "Honey", "extraCost": 3.0 }
+      ],
+      "ingredientRequirements": [
+        { "ingredientName": "Herbal Tea Blend", "amount": 5.0 },
+        { "ingredientName": "Sugar",            "amount": 5.0 }
+      ]
+    },
+    {
+      "type": "pastry",
+      "id": "PST-BCRO-001",
+      "name": "Butter Croissant",
+      "category": "Pastry",
+      "basePrice": 1.8,
+      "available": true,
+      "pastryType": "Croissant",
+      "variation": "Butter",
+      "ingredientRequirements": [
+        { "ingredientName": "Flour",  "amount": 80.0  },
+        { "ingredientName": "Butter", "amount": 40.0  },
+        { "ingredientName": "Sugar",  "amount": 10.0  }
+      ]
+    },
+    {
+      "type": "pastry",
+      "id": "PST-CCRO-002",
+      "name": "Chocolate Croissant",
+      "category": "Pastry",
+      "basePrice": 2.2,
+      "available": true,
+      "pastryType": "Croissant",
+      "variation": "Chocolate",
+      "ingredientRequirements": [
+        { "ingredientName": "Flour",           "amount": 8.0  },
+        { "ingredientName": "Butter",          "amount": 4.0  },
+        { "ingredientName": "Chocolate Chips", "amount": 3.0  }
+      ]
+    },
+    {
+      "type": "pastry",
+      "id": "PST-BBMF-003",
+      "name": "Blueberry Muffin",
+      "category": "Pastry",
+      "basePrice": 1.6,
+      "available": true,
+      "pastryType": "Muffin",
+      "variation": "Blueberry",
+      "ingredientRequirements": [
+        { "ingredientName": "Flour",  "amount": 7.0  },
+        { "ingredientName": "Sugar",  "amount": 3.0  },
+        { "ingredientName": "Butter", "amount": 2.0  },
+        { "ingredientName": "Milk",   "amount": 6.0  }
+      ]
+    },
+    {
+      "type": "pastry",
+      "id": "PST-CCMF-004",
+      "name": "Choc Chip Muffin",
+      "category": "Pastry",
+      "basePrice": 1.7,
+      "available": true,
+      "pastryType": "Muffin",
+      "variation": "Chocolate Chip",
+      "ingredientRequirements": [
+        { "ingredientName": "Flour",           "amount": 7.0  },
+        { "ingredientName": "Sugar",           "amount": 3.0  },
+        { "ingredientName": "Butter",          "amount": 2.0  },
+        { "ingredientName": "Chocolate Chips", "amount": 2.5  },
+        { "ingredientName": "Milk",            "amount": 6.0  }
+      ]
+    },
+    {
+      "type": "pastry",
+      "id": "PST-CCCK-005",
+      "name": "Chocolate Chip Cookie",
+      "category": "Pastry",
+      "basePrice": 1.2,
+      "available": true,
+      "pastryType": "Cookie",
+      "variation": "Chocolate Chip",
+      "ingredientRequirements": [
+        { "ingredientName": "Flour",           "amount": 5.0  },
+        { "ingredientName": "Sugar",           "amount": 3.0  },
+        { "ingredientName": "Butter",          "amount": 3.0  },
+        { "ingredientName": "Chocolate Chips", "amount": 2.0  }
+      ]
+    },
+    {
+      "type": "pastry",
+      "id": "PST-ORCK-006",
+      "name": "Oatmeal Raisin Cookie",
+      "category": "Pastry",
+      "basePrice": 1.1,
+      "available": true,
+      "pastryType": "Cookie",
+      "variation": "Oatmeal Raisin",
+      "ingredientRequirements": [
+        { "ingredientName": "Flour",  "amount": 5.0  },
+        { "ingredientName": "Sugar",  "amount": 2.5  },
+        { "ingredientName": "Butter", "amount": 2.5  }
+      ]
+    }
+  ],
+
+  "ingredients": [
+    { "name": "Coffee Beans",    "quantity": 2000.0, "unit": "g"  },
+    { "name": "Milk",            "quantity": 5000.0, "unit": "ml" },
+    { "name": "Sugar",           "quantity": 2000.0, "unit": "g"  },
+    { "name": "Flour",           "quantity": 5000.0, "unit": "g"  },
+    { "name": "Butter",          "quantity": 2000.0, "unit": "g"  },
+    { "name": "Chocolate Chips", "quantity": 1000.0, "unit": "g"  },
+    { "name": "Green Tea Leaves","quantity": 500.0,  "unit": "g"  },
+    { "name": "Black Tea Leaves","quantity": 500.0,  "unit": "g"  },
+    { "name": "Herbal Tea Blend","quantity": 300.0,  "unit": "g"  }
+  ],
+
+  "orders": []
+}

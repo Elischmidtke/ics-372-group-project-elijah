@@ -9,6 +9,8 @@ import java.util.List;
 public class Order {
 
     public enum Status { PENDING, IN_PROGRESS, FULFILLED }
+    
+    private boolean acceptedByBarista = false;
 
     private static final DateTimeFormatter FMT =
             DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
@@ -58,4 +60,11 @@ public class Order {
 
     public String getTimestamp() { return timestamp; }
     public void setTimestamp(String v) { this.timestamp = v; }
+    
+    public boolean isAcceptedByBarista() { 
+    	return acceptedByBarista;
+    }
+    public void setAcceptedByBarista(boolean acceptedByBarista) { 
+    	this.acceptedByBarista = acceptedByBarista; 
+    }
 }
