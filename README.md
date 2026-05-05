@@ -56,11 +56,6 @@ Customers do **not** need credentials — just enter a name at launch.
 - Java 21 LTS or newer
 - Maven 3.8+
 
-### Run in development
-```bash
-mvn javafx:run
-```
-
 ### Build executable JAR
 ```bash
 mvn clean package
