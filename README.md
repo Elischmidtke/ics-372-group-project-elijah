@@ -56,6 +56,13 @@ Customers do **not** need credentials — just enter a name at launch.
 - Java 21 LTS or newer
 - Maven 3.8+
 
+Save the project folder Group-Project-ICS-372-Elijah-Schmidtke to your desktop
+
+### Open the Directory
+```bash
+cd "C:\Users\YourUsername\Desktop\Group-Project-ICS-372-Elijah-Schmidtke"
+```
+
 ### Build executable JAR
 ```bash
 mvn clean package
