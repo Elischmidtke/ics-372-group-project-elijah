@@ -5,9 +5,23 @@ A JavaFX desktop application simulating a café ordering and management system.
 ---
 
 ## Table of Contents
-- [Project Structure](#project-structure)
 - [User Roles & Credentials](#user-roles--credentials)
 - [Building & Running](#building--running)
+- [Project Structure](#project-structure)
+- [Architectural Layers and MVC Structure](#architectural-layers-and-mvc-structure)
+- [Justification for MVC Design Choices](#justification-for-mvc-design-choices)
+  - [High Cohesion](#high-cohesion)
+  - [Low Coupling](#low-coupling)
+- [Applied OOP Principles and Design Patterns](#applied-oop-principles-and-design-patterns)
+  - [Factory Pattern](#factory-pattern)
+  - [Observer Pattern](#observer-pattern)
+  - [Singleton Pattern](#singleton-pattern)
+  - [OOP Principles](#oop-principles)
+  - [SRP, Cohesion, Inheritance, Composition](#srp-cohesion-inheritance-composition)
+    - [SRP](#srp)
+    - [Cohesion](#cohesion)
+    - [Inheritance](#inheritance)
+    - [Composition](#composition)
 - [Data Persistence](#data-persistence)
 - [Key Design Decisions](#key-design-decisions)
 - [Use Case Diagram](#use-case-diagram)
@@ -18,9 +32,50 @@ A JavaFX desktop application simulating a café ordering and management system.
   - [Diagram B: Barista Changes Order Status to In Progress](#diagram-b-barista-changes-order-status-to-in-progress)
   - [Diagram C: Manager Restocks Ingredient](#diagram-c-manager-restocks-ingredient)
 - [UI Wireframes](#ui-wireframes)
+  - [Manager View](#manager-view)
+  - [Customer View](#customer-view)
+  - [Barista View](#barista-view)
+---
+
+## User Roles & Credentials
+
+| Role    | Username | Password   |
+|---------|----------|------------|
+| Barista | barista1 | barista123 |
+| Barista | barista2 | brew456    |
+| Manager | manager1 | manager123 |
+| Manager | admin    | admin2024  |
+
+Customers do **not** need credentials — just enter a name at launch.
 
 ---
 
+## Building & Running
+
+### Prerequisites
+- Java 21 LTS or newer
+- Maven 3.8+
+
+### Run in development
+```bash
+mvn javafx:run
+```
+
+### Build executable JAR
+```bash
+mvn clean package
+java -jar target/brew-and-bite-1.0.0.jar
+```
+
+> **Note on JavaFX + fat JARs**: The `maven-shade-plugin` bundles all dependencies.  
+> On some systems you may need to pass JavaFX VM args explicitly:
+>
+> ```bash
+> java --add-opens javafx.graphics/com.sun.javafx.application=ALL-UNNAMED \
+>      -jar target/brew-and-bite-1.0.0.jar
+> ```
+
+---
 ## Project Structure
 
 ```text
@@ -134,50 +189,44 @@ A **Singleton Pattern** is explicitly used in the system through `SessionStore`.
 - A single shared instance is enforced through `SessionStore`.
 - This allows controllers to access shared state and services without requiring them to be passed through constructors.
 
-###
+### OOP Principles
 
+One core OOP principle this project follows is **Abstraction** because controller components interact with the system through interfaces instead of directly manipulating data themselves. 
+-High Level service classes handle communication between the domain logic and the UI
+-Concrete classes that utilize this principle include:
+  -`OrderService`
+  -`InventoryService`
+  -`PersistenceService`
+  -`MenuService`
+  
 
----
+### SRP, Cohesion, Inheritance, Composition
 
-## User Roles & Credentials
+#### SRP
+- Domain/model classes each have one job: to represent their data and behaviors.
+- Service classes also have one core function: to coordinate specific use cases.
+- Each part of the system is clearly separated by responsibility.
 
-| Role    | Username | Password   |
-|---------|----------|------------|
-| Barista | barista1 | barista123 |
-| Barista | barista2 | brew456    |
-| Manager | manager1 | manager123 |
-| Manager | admin    | admin2024  |
+#### Cohesion
+- Controllers are cohesive because they only handle the view.
+- Domain classes are cohesive because they represent domain state.
+- Persistence classes are also cohesive because they only manage data input and output.
 
-Customers do **not** need credentials — just enter a name at launch.
+#### Inheritance
+- Inheritance is used in classes like `MenuItem`, `Beverage`, and `Pastry`.
+- `MenuItem` is the abstract class.
+- `Beverage` and `Pastry` extend behavior from `MenuItem`.
 
----
-
-## Building & Running
-
-### Prerequisites
-- Java 21 LTS or newer
-- Maven 3.8+
-
-### Run in development
-```bash
-mvn javafx:run
-```
-
-### Build executable JAR
-```bash
-mvn clean package
-java -jar target/brew-and-bite-1.0.0.jar
-```
-
-> **Note on JavaFX + fat JARs**: The `maven-shade-plugin` bundles all dependencies.  
-> On some systems you may need to pass JavaFX VM args explicitly:
->
-> ```bash
-> java --add-opens javafx.graphics/com.sun.javafx.application=ALL-UNNAMED \
->      -jar target/brew-and-bite-1.0.0.jar
-> ```
+#### Composition
+- `Order` contains a `List<OrderItem>`, which shows a clear has-a relationship.
+- Services are composed of other services.
+- Menu items are composed of smaller domain objects:
+  - `Beverage` contains `Customization`, another clear example of a has-a relationship.
+  
 
 ---
+
+
 
 ## Data Persistence
 
